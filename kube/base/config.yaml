@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm
+  namespace: api-space
+data:
+  HELLO_ENV: "hello"
