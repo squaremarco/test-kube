@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: api-hello
+  namespace: api-space
+  labels:
+    app: api-hello
+spec:
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: api-hello
+  template:
+    metadata:
+      labels:
+        app: api-hello
+    spec:
+      containers:
+      - name: api-hello
+        image: api-hello:0.0.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        envFrom:
+        - configMapRef:
+            name: cm
+        resources:
+          requests:
+            cpu: 10m
