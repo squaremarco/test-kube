@@ -10,8 +10,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('/nanoid')
+  @Get('/uuid')
   getNanoid(): string {
-    return this.appService.getNanoid();
+    return this.appService.getGuid();
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { nanoid } from 'nanoid';
+import { v4 as guid } from 'uuid';
 
 @Injectable()
 export class AppService {
@@ -7,7 +7,7 @@ export class AppService {
     return process.env.HELLO_MESSAGE;
   }
 
-  getNanoid(): string {
-    return nanoid();
+  getGuid(): string {
+    return guid();
   }
 }
